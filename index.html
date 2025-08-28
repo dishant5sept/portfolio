@@ -1,365 +1,701 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dishant Kumar Yadav - Professional Portfolio</title>
-    <!-- Tailwind CSS CDN for easy styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts - Inter for a clean, modern look -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-            color: #334155; /* Darker text for readability */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dishant Kumar Yadav — Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { inter: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            ink: '#0b1220',
+            steel: '#0f172a',
+            soft: '#94a3b8',
+            glow: '#22d3ee',
+            aurora: '#a78bfa',
+          },
+          boxShadow: {
+            glow: '0 0 30px rgba(34,211,238,.3)',
+          },
+          backgroundImage: {
+            grid: "linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px)",
+          }
         }
-        /* Custom scroll-behavior for smooth scrolling on navigation clicks */
-        html {
-            scroll-behavior: smooth;
-        }
-        .section-padding {
-            padding: 4rem 1rem; /* Consistent padding for sections */
-        }
-        @media (min-width: 768px) {
-            .section-padding {
-                padding: 6rem 2rem;
-            }
-        }
-    </style>
+      }
+    }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="https://unpkg.com/lenis@1.0.44/dist/lenis.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+
+  <style>
+    :root { color-scheme: dark light; }
+    html{ scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; }
+    /* Hide scrollbars on WebKit for a cleaner feel */
+    ::-webkit-scrollbar{ width:10px; height:10px; }
+    ::-webkit-scrollbar-thumb{ background:#2a3347; border-radius:8px; }
+    .noise { position:fixed; inset:0; pointer-events:none; opacity:.06; background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.4"/></svg>'); mix-blend-mode: overlay; }
+    /* Marquee */
+    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  </style>
 </head>
-<body class="antialiased">
 
-    <!-- Navigation Bar -->
-    <nav class="bg-gray-800 p-4 shadow-lg fixed w-full z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <!-- Logo/Your Name -->
-            <a href="#hero" class="text-white text-2xl font-bold rounded-md px-2 py-1 hover:bg-gray-700 transition duration-300">Dishant Kumar Yadav</a>
-            <!-- Mobile Menu Button (Hamburger) -->
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-4 6h4"></path>
-                    </svg>
-                </button>
-            </div>
-            <!-- Desktop Navigation Links -->
-            <div class="hidden md:flex space-x-6">
-                <a href="#about" class="text-gray-300 hover:text-white transition duration-300 rounded-md px-3 py-2">About</a>
-                <a href="#experience" class="text-gray-300 hover:text-white transition duration-300 rounded-md px-3 py-2">Experience</a>
-                <a href="#projects" class="text-gray-300 hover:text-white transition duration-300 rounded-md px-3 py-2">Projects</a>
-                <a href="#skills" class="text-gray-300 hover:text-white transition duration-300 rounded-md px-3 py-2">Skills</a>
-                <a href="#contact" class="text-gray-300 hover:text-white transition duration-300 rounded-md px-3 py-2">Contact</a>
-            </div>
+<body class="bg-ink text-slate-200 antialiased selection:bg-cyan-300/30 selection:text-white">
+  <div class="noise"></div>
+  <div class="pointer-events-none fixed -z-10 inset-0">
+    <div class="absolute -top-40 -left-40 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-30 bg-gradient-to-br from-cyan-500 via-aurora to-fuchsia-500"></div>
+    <div class="absolute -bottom-40 -right-40 w-[40rem] h-[40rem] rounded-full blur-3xl opacity-30 bg-gradient-to-br from-purple-600 via-cyan-500 to-indigo-600"></div>
+  </div>
+
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 backdrop-blur supports-[backdrop-filter]:bg-ink/40 bg-ink/70 border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="#hero" class="font-extrabold text-xl tracking-tight">Dishant <span class="text-glow">Yadav</span></a>
+        <button id="menuBtn" class="md:hidden p-2 rounded hover:bg-white/5" aria-label="Toggle Menu"><i class="fa-solid fa-bars"></i></button>
+        <div id="links" class="hidden md:flex items-center gap-6">
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#about">About</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#experience">Experience</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#projects">Projects</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#articles">Articles</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#certifications">Certifications</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#skills">Skills</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#contact">Contact</a>
+          <a class="ml-2 inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 shadow-glow" href="https://drive.google.com/file/d/1gpIyVH8HY6hgEiUrLjHAyMFQ8xOeDq7a/view?usp=sharing" target="_blank" rel="noopener"><i class="fa-regular fa-file-lines"></i> Resume</a>
         </div>
-        <!-- Mobile Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-700 mt-2 rounded-lg py-2">
-            <a href="#about" class="block text-gray-300 hover:text-white px-4 py-2 transition duration-300">About</a>
-            <a href="#experience" class="block text-gray-300 hover:text-white px-4 py-2 transition duration-300">Experience</a>
-            <a href="#projects" class="block text-gray-300 hover:text-white px-4 py-2 transition duration-300">Projects</a>
-            <a href="#skills" class="block text-gray-300 hover:text-white px-4 py-2 transition duration-300">Skills</a>
-            <a href="#contact" class="block text-gray-300 hover:text-white px-4 py-2 transition duration-300">Contact</a>
+      </div>
+      <div id="mobileLinks" class="md:hidden hidden pb-4 space-y-2">
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#about">About</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#experience">Experience</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#projects">Projects</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#articles">Articles</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#certifications">Certifications</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#skills">Skills</a>
+        <a class="block px-3 py-2 rounded hover:bg-white/5" href="#contact">Contact</a>
+
+      </div>
+    </div>
+  </nav>
+
+  <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <canvas id="space"></canvas>
+    <div class="absolute inset-0 bg-gradient-to-b from-ink/10 to-ink/80"></div>
+
+    <div class="absolute inset-x-0 top-1/2 -translate-y-1/2 z-10 max-w-5xl mx-auto px-6 h-full flex flex-col justify-center items-center text-center">
+      <p class="inline-flex items-center gap-2 text-sm uppercase tracking-[0.2em] text-soft/80 bg-white/5 px-3 py-1 rounded-full border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-glow animate-ping"></span>
+        Available for full-time roles
+      </p>
+      <h1 class="mt-6 text-4xl md:text-7xl font-black leading-[1.05]">
+        Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-white to-fuchsia-300">Dishant Kumar Yadav</span>
+      </h1>
+      <p class="mt-6 text-lg md:text-xl text-slate-300/90">
+        Software Engineer with 2+ years of experience in Full Stack development. Skilled in building scalable applications, with 2 internships since my 2nd year of college and hands-on startup experience.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#projects" class="px-6 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 shadow-glow">View Projects</a>
+        <a href="#contact" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10">Get in Touch</a>
+      </div>
+
+<div class="mt-12 grid grid-cols-10 md:grid-cols-5 gap-2 text-left">
+
+  <a href="https://leetcode.com/u/dishant05092001/" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer block">
+    <div class="text-3xl font-extrabold" data-count="136">136+</div>
+    <div class="text-soft">LeetCode problems</div>
+  </a>
+
+  <a href="#projects" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer block">
+    <div class="text-3xl font-extrabold" data-count="7">0</div>
+    <div class="text-soft">Projects</div>
+  </a>
+
+  <a href="#certifications" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer block">
+    <div class="text-3xl font-extrabold" data-count="2">0</div>
+    <div class="text-soft">Certifications</div>
+  </a>
+
+  <a href="#articles" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer block">
+    <div class="text-3xl font-extrabold" data-count="3">0</div>
+    <div class="text-soft">Articles</div>
+  </a>
+
+  <a href="https://www.cloudskillsboost.google/public_profiles/1844e132-dc60-4ef3-9485-b9f54f32fb10" class="p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition cursor-pointer block">
+    <div class="text-3xl font-extrabold" data-count="19350">0</div>
+    <div class="text-soft">Google Arcade</div>
+  </a>
+
+</div>
+
+<style>
+  @keyframes marqueeLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100vw;       /* full screen width */
+    position: relative;
+    left: 50%;          /* center alignment hack */
+    transform: translateX(-50%); /* cancel parent padding/margin */
+    margin: 0;
+    padding: 0;
+  }
+
+  .marquee-content {
+    display: flex;
+    animation: marqueeLeft 30s linear infinite;
+    width: max-content; /* let content define width */
+  }
+
+  .marquee-container:hover .marquee-content {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem; /* space between skills */
+    padding-right: 2rem; /* ensure spacing before duplicate */
+  }
+</style>
+
+<body class="bg-slate-900 text-white min-h-screen">
+  <div class="container mx-auto px-4 py-8">
+    <div class="mb-12"></div>
+
+    <!-- Transparent Marquee Section -->
+    <div class="marquee-container py-6">
+      <div class="marquee-content">
+        <!-- First copy -->
+        <div class="marquee-item">
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">React</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">React Native</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Tailwind CSS</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Tkinter</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Node.js</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Express.js</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Spring Boot</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Hibernate</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Django</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Flask</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">ASP.NET</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">.NET (microservices)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">C#.NET</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Core Java</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">MySQL</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">MongoDB</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">SQL Server</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">SQLite</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Firestore</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">GCP (Google Cloud Platform)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">AWS</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Docker</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Firebase</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">CI/CD</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Keycloak</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Hadoop</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Spark</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Kafka</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">TensorFlow</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Python (Pandas, NumPy, Scikit-learn)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Google Gemini API</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Web APIs</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Entrez API</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Requests (Python)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Openfabric PySDK</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Typer (Python CLI)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Sequelize (ORM)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">CMS</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Data Validation</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Algorithm Optimization</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Cloud Supply Chain</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Python automation</span>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="hero" class="relative bg-gradient-to-r from-blue-600 to-purple-700 text-white flex items-center justify-center min-h-screen section-padding pt-20">
-        <div class="container mx-auto text-center">
-            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 leading-tight">
-                Hi, I'm <span class="text-yellow-300">Dishant Kumar Yadav</span>
-            </h1>
-            <p class="text-xl md:text-3xl mb-8 font-light">
-                A passionate <span class="font-semibold">Full Stack Developer</span> building impactful solutions.
-            </p>
-            <div class="space-x-4">
-                <a href="#experience" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out">My experience</a>
-                <a href="#projects" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">View My Work</a>
-                <a href="#contact" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out">Get in Touch</a>
-            </div>
+        <!-- Second copy (duplicate for seamless loop) -->
+        <div class="marquee-item" aria-hidden="true">
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">React</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">React Native</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Tailwind CSS</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Tkinter</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Node.js</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Express.js</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Spring Boot</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Hibernate</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Django</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Flask</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">ASP.NET</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">.NET (microservices)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">C#.NET</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Core Java</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">MySQL</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">MongoDB</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">SQL Server</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">SQLite</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Firestore</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">GCP (Google Cloud Platform)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">AWS</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Docker</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Firebase</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">CI/CD</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Keycloak</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Hadoop</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Spark</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Kafka</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">TensorFlow</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Python (Pandas, NumPy, Scikit-learn)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Google Gemini API</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Web APIs</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Entrez API</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Requests (Python)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Openfabric PySDK</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Typer (Python CLI)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Sequelize (ORM)</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">CMS</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Data Validation</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Algorithm Optimization</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Cloud Supply Chain</span>
+          <span class="text-lg text-slate-300 hover:text-white transition-colors">Python automation</span>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</body>
 
-    <!-- About Me Section -->
-    <section id="about" class="bg-white section-padding">
-        <div class="container mx-auto flex flex-col md:flex-row items-center gap-12">
-            <!-- Profile Picture -->
-            <div class="w-full md:w-1/3 flex justify-center">
-                <!-- Image for Dishant Kumar Yadav's profile, loaded from 'profile.jpeg' in the same directory -->
-                <img src="profile.jpeg" alt="Dishant Kumar Yadav's Photo" class="w-64 h-64 md:w-80 md:h-80 rounded-full object-cover shadow-xl border-4 border-blue-200">
+
+
+
+  </section>
+
+  <section id="about" class="relative py-24 md:py-32">
+    <div class="absolute inset-0 bg-grid bg-[size:20px_20px] opacity-[0.08]"></div>
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 items-center">
+      <div class="md:col-span-1 flex justify-center">
+        <img src="profile.jpeg" alt="Dishant Kumar Yadav" class="w-56 h-56 md:w-72 md:h-72 rounded-3xl object-cover shadow-2xl shadow-glow border border-white/10" />
+      </div>
+      <div class="md:col-span-2">
+        <h2 class="text-3xl md:text-4xl font-extrabold">About Me</h2>
+        <p class="mt-4 text-slate-300 leading-relaxed">
+          I am Dishant Kumar Yadav, a CSE graduate from IIIT Kottayam (April 2025) and a Full Stack Developer skilled in React, React Native, Spring Boot, Node.js, Django, Flask, and ASP.NET, with hands-on experience in MySQL, MongoDB, SQL Server, Firebase, and SQLite. My expertise spans cloud platforms (AWS, GCP, Firebase, Docker, CI/CD), big data (Hadoop, Spark, Kafka), and AI/ML (TensorFlow, Scikit-learn, Openfabric PySDK, Gemini API). I am passionate about building scalable applications and solving complex problems across both web and data-driven systems.
+        </p>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <a class="group p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition" href="https://drive.google.com/file/d/1gpIyVH8HY6hgEiUrLjHAyMFQ8xOeDq7a/view?usp=sharing" target="_blank" rel="noopener">
+            <div class="flex items-center gap-3">
+              <i class="fa-regular fa-file-lines text-xl"></i>
+              <div>
+                <div class="font-semibold">View Resume</div>
+                <div class="text-sm text-soft">One‑page snapshot of my impact</div>
+              </div>
             </div>
-            <!-- About Me Content -->
-            <div class="w-full md:w-2/3 text-center md:text-left">
-                <h2 class="text-4xl font-bold mb-6 text-gray-800">About Me</h2>
-                <p class="text-lg leading-relaxed mb-6 text-gray-700">
-                    Hello! I'm Dishant Kumar Yadav, a Full Stack Developer with experience in building scalable web applications and optimizing data solutions. I graduated from the Indian Institute of Information Technology, Kottayam, and have a strong foundation in computer science, including solving 136 LeetCode problems with 176 Submissions and 91.5 acceptance rate. Having 19350 points in Gold League in Google cloud arcade
-                </p>
-                <p class="text-lg leading-relaxed mb-8 text-gray-700">
-                    My expertise spans full-stack development with Java (Spring Boot), React.js, MySQL, and ASP.NET (MVC). I also have significant experience with cloud platforms (AWS, Azure, GCP), big data technologies (Hadoop, Spark, Kafka), and automation using Python. I'm passionate about creating user-centric and efficient systems.
-                </p>
-                <!-- Resume link as a dashboard-like card -->
-                <div class="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out inline-block text-center mt-6">
-                    <svg class="w-12 h-12 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                    </svg>
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">My Resume</h3>
-                    <p class="text-gray-600 mb-4">A comprehensive overview of my skills, experience, and education.</p>
-                    <a href="https://drive.google.com/file/d/1gpIyVH8HY6hgEiUrLjHAyMFQ8xOeDq7a/view?usp=sharing">View Resume</a>
-                </div>
+          </a>
+          <a class="group p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition" href="#contact">
+            <div class="flex items-center gap-3">
+              <i class="fa-solid fa-paper-plane text-xl"></i>
+              <div>
+                <div class="font-semibold">Hire Me</div>
+                <div class="text-sm text-soft">Let’s build something great</div>
+              </div>
             </div>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Experience Section - Rewritten to dashboard-like cards with aligned grid -->
-    <section id="experience" class="bg-gray-100 section-padding">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">Experience</h2>
-            <!-- Added justify-items-center to align cards within the grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
+  <section id="experience" class="py-24 md:py-32 bg-white/5 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Experience</h2>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article class="card p-6 rounded-2xl bg-white/5 border border-white/10" data-tilt data-tilt-max="5" data-tilt-speed="400">
+          <img src="micro1.png" alt="Micro1" class="w-20 h-20 object-contain rounded-full mx-auto" />
+          <h3 class="mt-4 text-2xl font-semibold">Micro1.ai</h3>
+          <p class="text-soft">Full Stack Developer</p>
+          <p class="mt-3 text-sm text-slate-300">React • Spring Boot • Hibernate • MySQL • Keycloak • GCP</p>
+        </article>
+        <article class="card p-6 rounded-2xl bg-white/5 border border-white/10" data-tilt>
+          <img src="Hexa Logo.png" alt="HexaHealth" class="w-20 h-20 object-contain rounded-full mx-auto" />
+          <h3 class="mt-4 text-2xl font-semibold">HexaHealth</h3>
+          <p class="text-soft">Executive Full Stack Developer</p>
+          <p class="mt-3 text-sm text-slate-300">Node • Express • MySQL • MongoDB • AWS • Docker • CI/CD</p>
+          <div class="mt-5 flex justify-center gap-3">
+            <a class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-sm" target="_blank" href="https://drive.google.com/file/d/1bYescJcVcTWZqFG0PxAgY-asODzEfvZ-/view?usp=sharing">Read More</a>
+            <a class="px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 text-sm" target="_blank" href="https://drive.google.com/file/d/1Y-lpRox3HgQrQr2HOdc7fnubUPpSxMOr/view?usp=sharing">Offer Letter</a>
+          </div>
+        </article>
+        <article class="card p-6 rounded-2xl bg-white/5 border border-white/10" data-tilt>
+          <img src="Hexa Logo.png" alt="HexaHealth" class="w-20 h-20 object-contain rounded-full mx-auto" />
+          <h3 class="mt-4 text-2xl font-semibold">HexaHealth</h3>
+          <p class="text-soft">Consultant Full Stack Developer</p>
+          <p class="mt-3 text-sm text-slate-300">Node • Express • JavaScript • MySQL • Sequelize • AWS</p>
+          <div class="mt-5 flex justify-center gap-3">
+            <a class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-sm" target="_blank" href="https://drive.google.com/file/d/1pfG12tP3HjIX78dGoaGmrs6mxPy7ERrO/view?usp=sharing">Read More</a>
+            <a class="px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 text-sm" target="_blank" href="https://drive.google.com/file/d/1QmDBpi4qimUA1Mf3Fk0_QrqfEuOLB4u-/view?usp=drive_link">Offer Letter</a>
+          </div>
+        </article>
+        <article class="card p-6 rounded-2xl bg-white/5 border border-white/10" data-tilt>
+          <img src="Hexa Logo.png" alt="HexaHealth" class="w-20 h-20 object-contain rounded-full mx-auto" />
+          <h3 class="mt-4 text-2xl font-semibold">HexaHealth</h3>
+          <p class="text-soft">Cataloging Intern</p>
+          <p class="mt-3 text-sm text-slate-300">CMS • Data Validation</p>
+          <div class="mt-5 flex justify-center gap-3">
+            <a class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-sm" target="_blank" href="https://drive.google.com/file/d/1dGpe9cs3trZnaBqfgSfCxkXTYOiplw3x/view?usp=sharing">Read More</a>
+            <a class="px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 text-sm" target="_blank" href="https://drive.google.com/file/d/10vXXDrq9dpnmNROXU1_baWphw2NjqEZY/view?usp=drive_link">Offer Letter</a>
+          </div>
+        </article>
+        <article class="card p-6 rounded-2xl bg-white/5 border border-white/10" data-tilt>
+          <img src="Salesine logo.png" alt="Salesine" class="w-20 h-20 object-contain rounded-full mx-auto" />
+          <h3 class="mt-4 text-2xl font-semibold">Salesine</h3>
+          <p class="text-soft">Desktop App Developer Intern</p>
+          <p class="mt-3 text-sm text-slate-300">Algorithm Optimization • Cloud Supply Chain</p>
+          <div class="mt-5 flex justify-center gap-3">
+            <a class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-sm" target="_blank" href="https://drive.google.com/file/d/1qHcy4UmtHJKAapMQtdfDBn-JXg9Xq2Gx/view?usp=sharing">Read More</a>
+            <a class="px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 text-sm" target="_blank" href="https://drive.google.com/file/d/10G7nS3ftwJztQ2IvqHWfJrqMeOf5yCGF/view?usp=drive_link">Offer Letter</a>
+          </div>
+        </article>
+        <article class="card p-6 rounded-2xl bg-white/5 border border-white/10" data-tilt>
+          <img src="Code Clause Logo.png" alt="CodeClause" class="w-20 h-20 object-contain rounded-full mx-auto" />
+          <h3 class="mt-4 text-2xl font-semibold">CodeClause</h3>
+          <p class="text-soft">Web Developer Intern</p>
+          <p class="mt-3 text-sm text-slate-300">Core Java • Spring Boot • C#.NET • Web APIs</p>
+          <div class="mt-5 flex justify-center gap-3">
+            <a class="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 border border-white/10 text-sm" target="_blank" href="https://drive.google.com/file/d/1goThD4mTFjThMDTvLgdh8dNpi1W0sZcH/view?usp=sharing">Read More</a>
+            <a class="px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 text-sm" target="_blank" href="https://drive.google.com/file/d/1h0pdgRzPT9EQZXmERBVA-1LxFWhzvneV/view?usp=drive_link">Offer Letter</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out flex flex-col items-center text-center">
-                    <img src="micro1.png" alt="Micro1 Logo" class="w-24 h-24 object-contain rounded-full mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">Micro1.ai</h3>
-                    <p class="text-lg text-gray-600 mb-2">Full Stack Developer</p>
-                    <p class="text-md text-gray-500 mb-4">Tech Stack: React + Spring Boot + Hibernate + MySQL + Keycloak + GCP</p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-auto">
-                    </div>
-                </div>
+  <section id="projects" class="py-24 md:py-32">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold">My Projects</h2>
+      <p class="mt-3 text-soft">A selection of end‑to‑end builds and data‑driven systems.</p>
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="ETE.png" alt="CodeClause" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="E-commerce" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">End‑to‑End E‑commerce Platform</h3>
+            <p class="mt-2 text-slate-300 text-sm">Spring Boot • React • MySQL • ASP.NET Admin • React Native</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/E-commerce.git" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="RTTPS.png" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="Traffic" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">Real‑Time Traffic Prediction System</h3>
+            <p class="mt-2 text-slate-300 text-sm">Python • Hadoop • Spark • Kafka • TensorFlow • React • Flask • MySQL</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/Real-Time-Traffic-Prediction.git" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="ERP.png" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="ERP" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">Enterprise Resource Planning (ERP) System</h3>
+            <p class="mt-2 text-slate-300 text-sm">SAP (ABAP/Fiori) • ASP.NET • SQL Server • Python automation</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/ERP-System.git" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="SocialA.png" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="Analytics" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">Social Media Analytics Platform</h3>
+            <p class="mt-2 text-slate-300 text-sm">Python (Pandas/NumPy/Sklearn) • Django • React • MySQL • Docker • .NET microservices • PHP</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/Social-Media-Analytics-Platform.git" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="Openfabric1.png" alt="CodeClause" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="E-commerce" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">Openfabric AI</h3>
+            <p class="mt-2 text-slate-300 text-sm">Python • Openfabric PySDK • SQLite • Tkinter • Docker</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/Openfabric" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="Spark.png" alt="CodeClause" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="E-commerce" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">Spark (AI-Enhanced Real-Time Chat)</h3>
+            <p class="mt-2 text-slate-300 text-sm">Firebase • Firestore • Google Gemini API • Tailwind CSS • JavaScript (ESM)</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/spark" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+        <article class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <img src="PubMed.png" alt="CodeClause" class="h-48 w-full object-cover transition duration-500 group-hover:scale-105" alt="E-commerce" />
+          <div class="p-6 text-left">
+            <h3 class="text-xl font-semibold">PubMed-Fetcher</h3>
+            <p class="mt-2 text-slate-300 text-sm">Python • Typer (CLI) • Requests • Pandas • Entrez API</p>
+            <a class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:text-cyan-200" href="https://github.com/dishant5sept/PubMed-Fetcher" target="_blank" rel="noopener">View repo <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section id="articles" class="py-24 md:py-32 bg-white/5 border-y border-white/10">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold">Articles</h2>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Executive Full Stack Developer, HexaHealth -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out flex flex-col items-center text-center">
-                    <img src="Hexa Logo.png" alt="HexaHealth Logo" class="w-24 h-24 object-contain rounded-full mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">HexaHealth</h3>
-                    <p class="text-lg text-gray-600 mb-2">Executive Full Stack Developer</p>
-                    <p class="text-md text-gray-500 mb-4">Tech Stack: Node.js, Express, MySQL, MongoDB, AWS, Docker, CI/CD</p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-auto">
-                        <a href="https://drive.google.com/file/d/1bYescJcVcTWZqFG0PxAgY-asODzEfvZ-/view?usp=sharing" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">Read More</a>
-                        <a href="https://drive.google.com/file/d/1Y-lpRox3HgQrQr2HOdc7fnubUPpSxMOr/view?usp=sharing" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out text-sm">View Offer Letter</a>
-                    </div>
-                </div>
+      <!-- Example Article Card -->
+      <article class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+        <h3 class="text-xl font-semibold">Backtracking and Sudoku solver program IN Java.</h3>
+        <p class="text-soft mt-2 text-sm">Exploring strategies to improve API performance using caching layers like Redis.</p>
+        <a href="https://medium.com/@dishantmhakhariya/backtracking-and-sudoku-solver-program-in-java-e75fc4ac2922" target="_blank" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30">Read More</a>
+      </article>
 
-                <!-- Consultant Full Stack Developer, HexaHealth -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out flex flex-col items-center text-center">
-                    <img src="Hexa Logo.png" alt="HexaHealth Logo" class="w-24 h-24 object-contain rounded-full mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">HexaHealth</h3>
-                    <p class="text-lg text-gray-600 mb-2">Consultant Full Stack Developer</p>
-                    <p class="text-md text-gray-500 mb-4">Tech Stack: Node.js, Express, JavaScript, MySQL, Sequelize ORM, AWS</p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-auto">
-                        <a href="https://drive.google.com/file/d/1pfG12tP3HjIX78dGoaGmrs6mxPy7ERrO/view?usp=sharing" target="_blank"class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">Read More</a>
-                        <a href="https://drive.google.com/file/d/1QmDBpi4qimUA1Mf3Fk0_QrqfEuOLB4u-/view?usp=drive_link" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out text-sm">View Offer Letter</a>
-                    </div>
-                </div>
+      <article class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+        <h3 class="text-xl font-semibold">POML: The “HTML for AI Prompts”</h3>
+        <p class="text-soft mt-2 text-sm">From prompt spaghetti to structured engineering.</p>
+        <a href="https://www.linkedin.com/pulse/poml-html-ai-prompts-dishant-kumar-yadav-visgc/?trackingId=unfb0MHKQ8uACcXtfPRqbw%3D%3D" target="_blank" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30">Read More</a>
+      </article>
 
-                <!-- Cataloging Intern, HexaHealth -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out flex flex-col items-center text-center">
-                    <img src="Hexa Logo.png" alt="HexaHealth Logo" class="w-24 h-24 object-contain rounded-full mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">HexaHealth</h3>
-                    <p class="text-lg text-gray-600 mb-2">Cataloging Intern</p>
-                    <p class="text-md text-gray-500 mb-4">Tech Stack: Content Management System, Data Validation</p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-auto">
-                        <a href="https://drive.google.com/file/d/1dGpe9cs3trZnaBqfgSfCxkXTYOiplw3x/view?usp=sharing" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">Read More</a>
-                        <a href="https://drive.google.com/file/d/10vXXDrq9dpnmNROXU1_baWphw2NjqEZY/view?usp=drive_link" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out text-sm">View Offer Letter</a>
-                    </div>
-                </div>
+      <article class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition">
+        <h3 class="text-xl font-semibold">Better Together: Quantifying the Benefits of AI-Assisted Recruitment</h3>
+        <p class="text-soft mt-2 text-sm">AI + Humans: Smarter, faster, and fairer hiring.</p>
+        <a href="https://www.linkedin.com/pulse/better-together-quantifying-benefits-ai-assisted-dishant-kumar-yadav-sreac/?trackingId=unfb0MHKQ8uACcXtfPRqbw%3D%3D" target="_blank" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30">Read More</a>
+      </article>
 
-                <!-- Desktop App Developer Intern, Salesine -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out flex flex-col items-center text-center">
-                    <img src="Salesine logo.png" alt="Salesine Logo" class="w-24 h-24 object-contain rounded-full mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">Salesine</h3>
-                    <p class="text-lg text-gray-600 mb-2">Desktop App Developer Intern</p>
-                    <p class="text-md text-gray-500 mb-4">Tech Stack: Algorithm Optimization, Cloud Supply Chain Automation</p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-auto">
-                        <a href="https://drive.google.com/file/d/1qHcy4UmtHJKAapMQtdfDBn-JXg9Xq2Gx/view?usp=sharing" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">Read More</a>
-                        <a href="https://drive.google.com/file/d/10G7nS3ftwJztQ2IvqHWfJrqMeOf5yCGF/view?usp=drive_link" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out text-sm">View Offer Letter</a>
-                    </div>
-                </div>
+    </div>
+  </div>
+</section>
+<section id="certifications" class="py-24 md:py-32">
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl md:text-4xl font-extrabold">Certifications</h2>
+    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
-                <!-- Web Developer Intern, CodeClause -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out flex flex-col items-center text-center">
-                    <img src="Code Clause Logo.png" alt="CodeClause Logo" class="w-24 h-24 object-contain rounded-full mb-4">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-1">CodeClause</h3>
-                    <p class="text-lg text-gray-600 mb-2">Web Developer Intern</p>
-                    <p class="text-md text-gray-500 mb-4">Tech Stack: Core Java, Spring Boot, C.NET, Web APIs</p>
-                    <div class="flex flex-wrap justify-center gap-4 mt-auto">
-                        <a href="https://drive.google.com/file/d/1goThD4mTFjThMDTvLgdh8dNpi1W0sZcH/view?usp=sharing" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">Read More</a>
-                        <a href="https://drive.google.com/file/d/1h0pdgRzPT9EQZXmERBVA-1LxFWhzvneV/view?usp=drive_link" target="_blank" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out text-sm">View Offer Letter</a>
-                    </div>
-                </div>
+      <!-- Example Certification Card -->
+      <article class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition" data-tilt>
+        <img src="Google.png" alt="Google Cloud" class="w-20 h-20 object-contain mx-auto" />
+        <h3 class="mt-4 text-xl font-semibold">Google certificate</h3>
+        <p class="text-soft mt-2">JavaScript</p>
+        <a href="https://drive.google.com/file/d/1pqdSW9LuY_5hkiccAspVNxQqybpGN2IT/view?usp=sharing" target="_blank" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30">View Credential</a>
+      </article>
 
-            </div>
+      <article class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition" data-tilt>
+        <img src="Micro.png" alt="AWS" class="w-20 h-20 object-contain mx-auto" />
+        <h3 class="mt-4 text-xl font-semibold">Micro1.ai</h3>
+        <p class="text-soft mt-2">Full Stack Developer</p>
+        <a href="https://drive.google.com/file/d/1zAC4nEW56wIvTysYdtJpf0pEgTm8ZL9k/view?usp=sharing" target="_blank" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30">View Credential</a>
+      </article>
+
+      <article class="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition" data-tilt>
+        <img src="Microsoft.png" alt="AWS" class="w-20 h-20 object-contain mx-auto" />
+        <h3 class="mt-4 text-xl font-semibold">Microsoft</h3>
+        <p class="text-soft mt-2">Cloud Practitioner</p>
+        <a href="https://drive.google.com/file/d/1C37sEn2rZt4vkgY10si6ZMFO88kPvHjn/view?usp=sharing" target="_blank" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30">View Credential</a>
+      </article>
+      
+
+    </div>
+  </div>
+</section>
+
+
+  <section id="skills" class="py-24 md:py-32 bg-white/5 border-y border-white/10">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Skills</h2>
+      <div class="mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-left">
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">Frontend and UI</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>React</li>
+            <li>React Native</li>
+            <li>Tailwind CSS</li>
+            <li>Tkinter</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- My Work (Projects) Section -->
-    <section id="projects" class="bg-gray-100 section-padding">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">My Work</h2>
-            <!-- Added justify-items-center to align cards within the grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center">
-                <!-- Project Card: End-to-End E-commerce Platform -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/400x250/cbd5e1/475569?text=E-commerce+Platform" alt="End-to-End E-commerce Platform" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">End-to-End E-commerce Platform</h3>
-                    <p class="text-gray-600 mb-4">Developed a comprehensive e-commerce platform with Spring Boot, React.js, MySQL, ASP.NET for admin, and React Native for mobile.</p>
-                    <a href="https://github.com/dishant5sept/E-commerce.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">View Project Details</a>
-                </div>
-
-                <!-- Project Card: Real-Time Traffic Prediction System -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/400x250/a78bfa/f8fafc?text=Traffic+Prediction" alt="Real-Time Traffic Prediction System" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Real-Time Traffic Prediction System</h3>
-                    <p class="text-gray-600 mb-4">Built a system using Python, Hadoop, Spark, Kafka, TensorFlow, React.js, Flask, and MySQL for real-time traffic analysis.</p>
-                    <a href="https://github.com/dishant5sept/Real-Time-Traffic-Prediction.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">View Project Details</a>
-                </div>
-
-                <!-- Project Card: Enterprise Resource Planning (ERP) System -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/400x250/93c5fd/1e3a8a?text=ERP+System" alt="Enterprise Resource Planning (ERP) System" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Enterprise Resource Planning (ERP) System</h3>
-                    <p class="text-gray-600 mb-4">Developed an ERP system with SAP (ABAP, Fiori), ASP.NET, SQL Server, JavaScript, and Python for automation.</p>
-                    <a href="https://github.com/dishant5sept/ERP-System.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">View Project Details</a>
-                </div>
-
-                <!-- Project Card: Social Media Analytics Platform -->
-                <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <img src="https://placehold.co/400x250/fca5a5/7f1d1d?text=Social+Analytics" alt="Social Media Analytics Platform" class="w-full h-48 object-cover rounded-md mb-4 shadow-sm">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Social Media Analytics Platform</h3>
-                    <p class="text-gray-600 mb-4">Created an analytics platform using Python (Pandas, NumPy, Scikit-learn), Django, React.js, MySQL, Docker, .NET (Microservices), and PHP.</p>
-                    <a href="https://github.com/dishant5sept/Social-Media-Analytics-Platform.git" target="_blank" class="bg-gray-200 text-gray-800 px-6 py-3 rounded-lg shadow-md hover:bg-gray-300 transition duration-300 ease-in-out text-sm">View Project Details</a>
-                </div>
-            </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">Backend and Frameworks</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>Node.js, Express.js, Spring Boot</li>
+            <li>Hibernate, Django, Flask, ASP.NET, .NET</li>
+            <li>C#.NET, Core Java</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="bg-white section-padding">
-        <div class="container mx-auto text-center">
-            <h2 class="text-4xl font-bold mb-12 text-gray-800">My Skills</h2>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                <!-- Technical Skills -->
-                <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Technical Skills</h3>
-                    <ul class="list-disc list-inside text-left text-gray-700 space-y-2">
-                        <li>Java (Spring Boot, Core Java)</li>
-                        <li>React.js</li>
-                        <li>MySQL</li>
-                        <li>ASP.NET (MVC, C.NET, Microservices)</li>
-                        <li>Python (TensorFlow, Pandas, NumPy, Scikit-learn, Flask, Django)</li>
-                        <li>JavaScript</li>
-                        <li>Node.js, Express</li>
-                        <li>PHP (WordPress)</li>
-                        <li>React Native</li>
-                        <li>GraphQL</li>
-                    </ul>
-                </div>
-                <!-- Cloud & Big Data -->
-                <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Cloud & Big Data</h3>
-                    <ul class="list-disc list-inside text-left text-gray-700 space-y-2">
-                        <li>AWS</li>
-                        <li>Azure</li>
-                        <li>GCP</li>
-                        <li>Hadoop</li>
-                        <li>Spark</li>
-                        <li>Kafka</li>
-                        <li>Docker</li>
-                        <li>CI/CD Pipelines</li>
-                    </ul>
-                </div>
-                <!-- ERP & Databases -->
-                <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">ERP & Databases</h3>
-                    <ul class="list-disc list-inside text-left text-gray-700 space-y-2">
-                        <li>SAP (ABAP, Fiori)</li>
-                        <li>SQL Server</li>
-                        <li>MongoDB</li>
-                        <li>Sequelize ORM</li>
-                    </ul>
-                </div>
-                <!-- Soft Skills & Achievements -->
-                <div class="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out">
-                    <h3 class="text-xl font-semibold mb-3 text-gray-800">Soft Skills & Achievements</h3>
-                    <ul class="list-disc list-inside text-left text-gray-700 space-y-2">
-                        <li>Problem-Solving (321 LeetCode problems)</li>
-                        <li>Communication & Teamwork</li>
-                        <li>Data Validation & Optimization</li>
-                        <li>User-Friendly Interface Design</li>
-                        <li>Microsoft AI Challenge Completed</li>
-                        <li>Google Cloud Gold League Member</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">ERP & Databases</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>MySQL, MongoDB, SQL Server</li>
+            <li>SQLite, Firestore</li>
+          </ul>
         </div>
-    </section>
-<!-- Contact Section -->
-    <section id="contact" class="bg-gray-800 text-white section-padding">
-        <div class="container mx-auto text-center max-w-3xl">
-            <h2 class="text-4xl font-bold mb-8">Get in Touch</h2>
-            <p class="text-lg mb-8">
-                Have a question, a project idea, or just want to say hello? Feel free to reach out!
-            </p>
-            <!-- Formspree integration -->
-            <!-- IMPORTANT: Replace "https://formspree.io/f/yourformid" with your actual Formspree endpoint -->
-            <!-- You need to create a form on Formspree.io and verify your email to receive submissions. -->
-            <form action="https://formspree.io/f/mayzqgwr" method="POST" target="_blank" class="space-y-6">
-                <div>
-                    <input type="text" id="name" name="name" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" required>
-                </div>
-                <div>
-                    <input type="email" id="email" name="_replyto" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" required>
-                </div>
-                <div>
-                    <textarea id="message" name="message" rows="6" placeholder="Your Message" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" required></textarea>
-                </div>
-                <!-- Hidden input to set email subject -->
-                <input type="hidden" name="_subject" value="New Contact Form Submission from Your Portfolio!">
-                <div>
-                    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out w-full md:w-auto">Send Message</button>
-                </div>
-            </form>
-            <div class="mt-12 text-lg">
-                <p class="mb-4">You can also find me on:</p>
-                <div class="flex justify-center space-x-6">
-                    <!-- Replace # with your actual profile URLs -->
-                    <a href="https://www.linkedin.com/in/dishant-kumar-yadav-b6a63221a/" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-linkedin fa-2x"></i></a>
-                    <a href="https://github.com/dishant5sept" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-github fa-2x"></i></a>
-                    <a href="https://leetcode.com/u/dishant05092001/" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fas fa-code fa-2x"></i></a> 
-                    <a href="https://www.codechef.com/users/dishantyadav10" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fas fa-laptop-code fa-2x"></i></a> 
-                    <a href="https://www.instagram.com/_dishant_mhakhariya/" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-instagram fa-2x"></i></a>
-                    <a href="https://www.cloudskillsboost.google/public_profiles/1844e132-dc60-4ef3-9485-b9f54f32fb10" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-google fa-2x"></i></a> 
-                    <a href="https://medium.com/@dishantmhakhariya/backtracking-and-sudoku-solver-program-in-java-e75fc4ac2922" target="_blank" class="text-gray-400 hover:text-white transition duration-300"><i class="fab fa-medium fa-2x"></i></a>
-
-
-            </div>
-            </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">ERP & Databases</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>MySQL, MongoDB, SQL Server</li>
+            <li>SQLite, Firestore</li>
+          </ul>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-8 text-center">
-        <div class="container mx-auto">
-            <p>&copy; 2025 Dishant Kumar Yadav. All rights reserved.</p>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">Cloud & DevOps</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>GCP (Google Cloud Platform)</li>
+            <li>AWS</li>
+            <li>Docker, Firebase, CI/CD</li>
+            <li>Keycloak</li>
+          </ul>
         </div>
-    </footer>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">AI and ML</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>Tenserflow, Google Gemini</li>
+            <li>Python (Pandas, NumPy, Scikit-learn)</li>
+          </ul>
+        </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">Other tools / Frameworks</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>Openfabric PySDK, Python CLI, Sequelize (ORM) </li>
+            <li>Web APIs, Entrez API</li>
+          </ul>
+        </div>
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10">
+          <h3 class="font-semibold">Soft Skills & Achievements</h3>
+          <ul class="mt-3 space-y-1 text-sm text-slate-300 list-disc pl-5">
+            <li>Problem‑Solving (136 LeetCode)</li>
+            <li>Communication & Teamwork</li>
+            <li>Optimization & Data Validation</li>
+            <li>UI polish & DX focus</li>
+            <li>Microsoft AI Challenge</li>
+            <li>Google Cloud Gold League</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- JavaScript for Mobile Menu Toggle -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
+  <section id="contact" class="py-24 md:py-32">
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold">Get in Touch</h2>
+      <p class="mt-3 text-soft">Have a project, role, or idea? Let’s talk.</p>
+      <form action="https://formspree.io/f/mayzqgwr" method="POST" target="_blank" class="mt-10 space-y-4 text-left">
+        <input name="name" required placeholder="Your name" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+        <input type="email" name="_replyto" required placeholder="Your email" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400" />
+        <textarea name="message" rows="6" required placeholder="Your message" class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400"></textarea>
+        <input type="hidden" name="_subject" value="New Contact Form Submission from Portfolio" />
+        <button class="w-full md:w-auto px-6 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 shadow-glow">Send Message</button>
+      </form>
 
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.toggle('hidden');
-            });
+      <div class="mt-10 flex items-center justify-center gap-6 text-2xl">
+        <a class="text-soft hover:text-white" target="_blank" href="https://www.linkedin.com/in/dishant-kumar-yadav-b6a63221a/"><i class="fab fa-linkedin"></i></a>
+        <a class="text-soft hover:text-white" target="_blank" href="https://github.com/dishant5sept"><i class="fab fa-github"></i></a>
+        <a class="text-soft hover:text-white" target="_blank" href="https://leetcode.com/u/dishant05092001/"><i class="fas fa-code"></i></a>
+        <a class="text-soft hover:text-white" target="_blank" href="https://www.codechef.com/users/dishantyadav10"><i class="fas fa-laptop-code"></i></a>
+        <a class="text-soft hover:text-white" target="_blank" href="https://www.instagram.com/_dishant_mhakhariya/"><i class="fab fa-instagram"></i></a>
+        <a class="text-soft hover:text-white" target="_blank" href="https://www.cloudskillsboost.google/public_profiles/1844e132-dc60-4ef3-9485-b9f54f32fb10"><i class="fab fa-google"></i></a>
+        <a class="text-soft hover:text-white" target="_blank" href="https://medium.com/@dishantmhakhariya/backtracking-and-sudoku-solver-program-in-java-e75fc4ac2922"><i class="fab fa-medium"></i></a>
+      </div>
+    </div>
+  </section>
 
-            // Close mobile menu when a link is clicked
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
-            });
-        });
-    </script>
+  <footer class="py-10 border-t border-white/10 text-center text-soft">
+    <div class="max-w-6xl mx-auto px-6">
+      <p>© 2025 Dishant Kumar Yadav. Built with ♥</p>
+    </div>
+  </footer>
+
+  <a href="#contact" class="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-2xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 shadow-glow backdrop-blur">
+    <i class="fa-solid fa-message"></i>
+  </a>
+
+  <script>
+    // Mobile nav
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileLinks = document.getElementById('mobileLinks');
+    menuBtn?.addEventListener('click', () => mobileLinks.classList.toggle('hidden'));
+
+    // Smooth scrolling with Lenis
+    const lenis = new Lenis({ lerp: 0.13, wheelMultiplier: 0.9, smoothTouch: false });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf) }
+    requestAnimationFrame(raf);
+
+    // GSAP reveal animations
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray('section').forEach((sec, i) => {
+      gsap.fromTo(sec.querySelectorAll('h2, h1, p, .card, article, img, form, a, .grid > *'),
+        { y: 30, opacity: 0 },
+        {
+          y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', stagger: 0.04,
+          scrollTrigger: { trigger: sec, start: 'top 80%', once: true }
+        }
+      );
+    });
+
+    // Count up numbers in hero
+    const counters = document.querySelectorAll('[data-count]');
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target; const target = +el.dataset.count;
+        let cur = 0; const step = Math.ceil(target / 60);
+        const t = setInterval(() => { cur += step; if (cur >= target) { cur = target; clearInterval(t); } el.textContent = cur.toLocaleString(); }, 16);
+        countObserver.unobserve(el);
+      });
+    }, { threshold: 0.6 });
+    counters.forEach(c => countObserver.observe(c));
+
+    // Tilt effects
+    VanillaTilt.init(document.querySelectorAll('[data-tilt]'));
+
+    // Sticky nav shadow on scroll
+    const nav = document.getElementById('nav');
+    let last = 0; window.addEventListener('scroll', () => {
+      const y = window.scrollY; nav.style.boxShadow = y > 10 ? '0 10px 30px rgba(0,0,0,.25)' : 'none'; last = y;
+    }, { passive: true });
+
+    // THREE.js Starfield
+    const canvas = document.getElementById('space');
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 8;
+
+    const starsGeometry = new THREE.BufferGeometry();
+    const starCount = 2000;
+    const positions = new Float32Array(starCount * 3);
+    for (let i = 0; i < starCount; i++) {
+      positions[i * 3 + 0] = (Math.random() - 0.5) * 60;
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 60;
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
+    }
+    starsGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const starsMaterial = new THREE.PointsMaterial({ color: 0x7dd3fc, size: 0.03, sizeAttenuation: true });
+    const stars = new THREE.Points(starsGeometry, starsMaterial);
+    scene.add(stars);
+
+    const resize = () => {
+      const w = window.innerWidth, h = window.innerHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+    };
+    resize(); window.addEventListener('resize', resize);
+
+    let rx = 0, ry = 0;
+    window.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth) - 0.5;
+      const y = (e.clientY / window.innerHeight) - 0.5;
+      rx = y * 0.2; ry = x * 0.2;
+    });
+
+    const animate = () => {
+      stars.rotation.x += 0.0006 + (rx - stars.rotation.x) * 0.02;
+      stars.rotation.y += 0.001 + (ry - stars.rotation.y) * 0.02;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    };
+    animate();
+  </script>
 </body>
 </html>
