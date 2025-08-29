@@ -606,9 +606,9 @@
     </div>
   </footer>
 
-  <a href="#contact" class="fixed bottom-6 right-6 z-40 px-4 py-3 rounded-2xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 shadow-glow backdrop-blur">
-    <i class="fa-solid fa-message"></i>
-  </a>
+<a href="#contact" id="messageButton" class="right-6 z-40 px-4 py-3 rounded-2xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-300/30 shadow-glow backdrop-blur">
+  <i class="fa-solid fa-message"></i>
+</a>
 
   <script>
     // Mobile nav
@@ -696,6 +696,37 @@
       requestAnimationFrame(animate);
     };
     animate();
+// Keep the message button above the footer
+const messageButton = document.getElementById('messageButton');
+const footer = document.querySelector('footer');
+
+function adjustMessageButtonPosition() {
+  const footerRect = footer.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  // If the footer is in view, position the button relative to the footer
+  if (footerRect.top < viewportHeight) {
+    // Calculate how much of the footer is visible at the bottom
+    const footerVisibleHeight = viewportHeight - footerRect.top;
+    
+    // Set the button's position to be above the visible part of the footer, plus some margin
+    messageButton.style.position = 'absolute';
+    messageButton.style.bottom = `${footerVisibleHeight + 24}px`; // 24px for extra margin
+    messageButton.style.right = '24px'; // Keep right alignment
+  } else {
+    // If the footer is not in view, keep it fixed at the bottom
+    messageButton.style.position = 'fixed';
+    messageButton.style.bottom = '24px';
+    messageButton.style.right = '24px';
+  }
+}
+
+// Call the function on scroll and resize
+window.addEventListener('scroll', adjustMessageButtonPosition);
+window.addEventListener('resize', adjustMessageButtonPosition);
+
+// Initial call to set the correct position on page load
+adjustMessageButtonPosition();
   </script>
 </body>
 </html>
