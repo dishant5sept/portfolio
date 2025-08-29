@@ -697,37 +697,38 @@
       requestAnimationFrame(animate);
     };
     animate();
-// Keep the message button above the footer
-const messageButton = document.getElementById('messageButton');
-const footer = document.querySelector('footer');
+document.addEventListener('DOMContentLoaded', () => {
+  const contactButton = document.getElementById('contact-button');
+  const footer = document.getElementById('page-footer');
 
-function adjustMessageButtonPosition() {
-  const footerRect = footer.getBoundingClientRect();
-  const viewportHeight = window.innerHeight;
+  if (!contactButton || !footer) return;
 
-  // If the footer is in view, position the button relative to the footer
-  if (footerRect.top < viewportHeight) {
-    // Calculate how much of the footer is visible at the bottom
-    const footerVisibleHeight = viewportHeight - footerRect.top;
-    
-    // Set the button's position to be above the visible part of the footer, plus some margin
-    messageButton.style.position = 'absolute';
-    messageButton.style.bottom = `${footerVisibleHeight + 24}px`; // 24px for extra margin
-    messageButton.style.right = '24px'; // Keep right alignment
-  } else {
-    // If the footer is not in view, keep it fixed at the bottom
-    messageButton.style.position = 'fixed';
-    messageButton.style.bottom = '24px';
-    messageButton.style.right = '24px';
-  }
-}
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        // Get the height of the footer
+        const footerHeight = entry.boundingClientRect.height;
+        
+        if (entry.isIntersecting) {
+          // If the footer is visible, move the button up by the footer's height plus a margin
+          contactButton.style.bottom = `${footerHeight + 24}px`; // 24px margin
+        } else {
+          // If the footer is not visible, reset the button to its original position
+          contactButton.style.bottom = '24px'; // Corresponds to Tailwind's 'bottom-6'
+        }
+      });
+    },
+    {
+      root: null, // observing intersections relative to the viewport
+      threshold: 0, // trigger as soon as any part of the footer is visible
+    }
+  );
 
-// Call the function on scroll and resize
-window.addEventListener('scroll', adjustMessageButtonPosition);
-window.addEventListener('resize', adjustMessageButtonPosition);
+  // Start observing the footer
+  observer.observe(footer);
+});
 
-// Initial call to set the correct position on page load
-adjustMessageButtonPosition();
+
   </script>
 </body>
 </html>
