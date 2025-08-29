@@ -697,38 +697,39 @@
       requestAnimationFrame(animate);
     };
     animate();
-document.addEventListener('DOMContentLoaded', () => {
-  const contactButton = document.getElementById('contact-button');
-  const footer = document.getElementById('page-footer');
+<script>
+  // Final script to keep the contact button above the footer
+  document.addEventListener('DOMContentLoaded', () => {
+    const contactButton = document.getElementById('contact-button');
+    const footer = document.getElementById('page-footer');
 
-  if (!contactButton || !footer) return;
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        // Get the height of the footer
-        const footerHeight = entry.boundingClientRect.height;
-        
-        if (entry.isIntersecting) {
-          // If the footer is visible, move the button up by the footer's height plus a margin
-          contactButton.style.bottom = `${footerHeight + 24}px`; // 24px margin
-        } else {
-          // If the footer is not visible, reset the button to its original position
-          contactButton.style.bottom = '24px'; // Corresponds to Tailwind's 'bottom-6'
-        }
-      });
-    },
-    {
-      root: null, // observing intersections relative to the viewport
-      threshold: 0, // trigger as soon as any part of the footer is visible
+    // Check if elements exist
+    if (!contactButton) {
+      console.error("DEBUG: Contact button with id='contact-button' not found.");
+      return;
     }
-  );
+    if (!footer) {
+      console.error("DEBUG: Footer with id='page-footer' not found.");
+      return;
+    }
 
-  // Start observing the footer
-  observer.observe(footer);
-});
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const footerEntry = entries[0];
+        if (footerEntry.isIntersecting) {
+          // Footer is in view, so move the button up
+          const footerHeight = footerEntry.boundingClientRect.height;
+          contactButton.style.setProperty('bottom', `${footerHeight + 24}px`, 'important');
+        } else {
+          // Footer is not in view, so reset the button's position
+          contactButton.style.setProperty('bottom', '24px', 'important');
+        }
+      },
+      { threshold: 0 } // Trigger as soon as any part of the footer is visible
+    );
 
-
+    observer.observe(footer);
+  });
   </script>
 </body>
 </html>
