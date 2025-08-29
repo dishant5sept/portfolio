@@ -698,34 +698,39 @@
     };
     animate();
 <script>
-  // Final script to keep the contact button above the footer
+  / Keep contact button above footer
   document.addEventListener('DOMContentLoaded', () => {
     const contactButton = document.getElementById('contact-button');
     const footer = document.getElementById('page-footer');
 
-    // Check if elements exist
-    if (!contactButton) {
-      console.error("DEBUG: Contact button with id='contact-button' not found.");
-      return;
-    }
-    if (!footer) {
-      console.error("DEBUG: Footer with id='page-footer' not found.");
-      return;
-    }
+    if (!contactButton || !footer) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
-        const footerEntry = entries[0];
-        if (footerEntry.isIntersecting) {
-          // Footer is in view, so move the button up
-          const footerHeight = footerEntry.boundingClientRect.height;
-          contactButton.style.setProperty('bottom', `${footerHeight + 24}px`, 'important');
-        } else {
-          // Footer is not in view, so reset the button's position
-          contactButton.style.setProperty('bottom', '24px', 'important');
-        }
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const footerRect = entry.boundingClientRect;
+            const windowHeight = window.innerHeight;
+            const buttonHeight = contactButton.offsetHeight;
+            const gap = 24;
+            
+            // Calculate how much the footer overlaps with the button's normal position
+            const footerTop = footerRect.top;
+            const buttonBottom = windowHeight - gap - buttonHeight;
+            
+            if (footerTop < buttonBottom + buttonHeight) {
+              const newBottom = windowHeight - footerTop + gap;
+              contactButton.style.bottom = `${newBottom}px`;
+            }
+          } else {
+            contactButton.style.bottom = '24px';
+          }
+        });
       },
-      { threshold: 0 } // Trigger as soon as any part of the footer is visible
+      { 
+        threshold: [0, 0.1, 0.5, 1],
+        rootMargin: '0px 0px 100px 0px'
+      }
     );
 
     observer.observe(footer);
